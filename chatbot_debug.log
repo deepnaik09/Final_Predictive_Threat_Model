@@ -1,0 +1,17 @@
+2025-04-13 15:43:28,510 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.9:5000
+2025-04-13 15:43:28,511 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-13 15:43:42,152 - werkzeug - INFO - 127.0.0.1 - - [13/Apr/2025 15:43:42] "GET /welcome HTTP/1.1" 200 -
+2025-04-13 15:43:46,395 - werkzeug - INFO - 127.0.0.1 - - [13/Apr/2025 15:43:46] "OPTIONS /chat HTTP/1.1" 200 -
+2025-04-13 15:43:47,279 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-13 15:43:47,305 - werkzeug - INFO - 127.0.0.1 - - [13/Apr/2025 15:43:47] "POST /chat HTTP/1.1" 200 -
+2025-04-13 15:44:07,471 - werkzeug - INFO - 127.0.0.1 - - [13/Apr/2025 15:44:07] "OPTIONS /chat HTTP/1.1" 200 -
+2025-04-13 15:44:08,383 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-13 15:44:08,397 - werkzeug - INFO - 127.0.0.1 - - [13/Apr/2025 15:44:08] "POST /chat HTTP/1.1" 200 -
+2025-04-13 15:44:33,678 - werkzeug - INFO - 127.0.0.1 - - [13/Apr/2025 15:44:33] "OPTIONS /chat HTTP/1.1" 200 -
+2025-04-13 15:44:34,456 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-13 15:44:34,463 - werkzeug - INFO - 127.0.0.1 - - [13/Apr/2025 15:44:34] "POST /chat HTTP/1.1" 200 -
+2025-04-13 15:54:53,182 - werkzeug - INFO - 127.0.0.1 - - [13/Apr/2025 15:54:53] "[33mGET / HTTP/1.1[0m" 404 -
+2025-04-13 15:54:53,251 - werkzeug - INFO - 127.0.0.1 - - [13/Apr/2025 15:54:53] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
