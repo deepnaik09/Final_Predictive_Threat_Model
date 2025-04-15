@@ -12,11 +12,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 from imblearn.over_sampling import SMOTE
 from sklearn.metrics import f1_score
-import pickle
-import os
 
-
-filepath= "Datasets/FinalDataset.csv"
+filepath= "../Datasets/FinalDataset.csv"
 dataset = pd.read_csv(filepath)
 
 # target variable balance:
@@ -94,21 +91,18 @@ y_pred_stacking=stacking_clf.predict(X_test)
 print("Accuracy of stacking: ", accuracy_score(y_test,y_pred_stacking))
 print("Classification: ",classification_report(y_test,y_pred_stacking))
 
-# ✅ THRESHOLD SECTION - UPDATED BELOW
 y_proba = stacking_clf.predict_proba(X_test)[:, 1]
-threshold = 0.10  # lowered threshold for more approvals
+threshold = 0.20
 y_pred_thresh = (y_proba >= threshold).astype(int)
-
-print("\n🔍 Model Evaluation at Threshold = 0.10")
-print("Accuracy:", accuracy_score(y_test, y_pred_thresh))
-print("Approvals (Predicted 1s):", sum(y_pred_thresh), "out of", len(y_pred_thresh))
-print("Classification Report:")
+print("Accuracy with threshold 0.20: ",accuracy_score(y_test,y_pred_thresh))
+print("Classification Report with hreshold (0.20):")
 print(classification_report(y_test, y_pred_thresh))
-print("Confusion Matrix:")
+print("Confusion Matrix with Best Threshold (0.20):")
 print(confusion_matrix(y_test, y_pred_thresh))
 
 # import lime
 import lime.lime_tabular
+import numpy as np
 X_train_np = X_train.values
 X_test_np = X_test.values
 explainer = lime.lime_tabular.LimeTabularExplainer(
@@ -129,6 +123,7 @@ plt.tight_layout()
 plt.show()
 
 # FEATURE IMPORTSNCE
+
 importances = rf.feature_importances_
 features = X_train_smote.columns
 feat_df = pd.DataFrame({
@@ -142,6 +137,7 @@ sns.barplot(data=feat_df.head(20), x="Importance", y="Feature")
 plt.title("Top 20 Important Features (Random Forest)")
 plt.tight_layout()
 plt.show()
+
 
 #ROC-AUC CURVE APPLY BETWEEN LR and RF
 from sklearn.metrics import roc_auc_score , roc_curve , auc
@@ -163,6 +159,7 @@ plt.title('ROC Curves for Two Models')
 plt.legend()
 plt.show() 
 
+
 #Precision recall curve 
 from sklearn.metrics import precision_recall_curve
 
@@ -178,13 +175,4 @@ plt.title('Precision-Recall Curve')
 plt.legend()
 plt.show()
 
-model_dir = "models"
-if not os.path.exists(model_dir):
-    os.makedirs(model_dir)
 
-# Save the model in the 'models' directory
-model_path = os.path.join(model_dir, 'Predictive_model.pkl')
-with open(model_path, 'wb') as file:
-    pickle.dump(stacking_clf, file)  # Replace stacking_clf with your model
-
-print(f"Model saved to {model_path}")
