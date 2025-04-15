@@ -323,15 +323,15 @@
                 botMessage.className = "bot-message";
 
                 if (data.response.includes("<")) {
-                    botMessage.innerHTML = "Vyom: " + data.response;
+                    botMessage.innerHTML = "Bot: " + data.response;
                 } else {
-                    botMessage.textContent = "Vyom: " + (data.response || "Sorry, I couldn't process your request.");
+                    botMessage.textContent = "Bot: " + (data.response || "Sorry, I couldn't process your request.");
                 }
 
                 messages.appendChild(botMessage);
             } catch (error) {
                 const errorMessage = document.createElement("div");
-                errorMessage.textContent = "Vyom: Sorry, something went wrong.";
+                errorMessage.textContent = "Bot: Sorry, something went wrong.";
                 errorMessage.className = "bot-message";
                 messages.appendChild(errorMessage);
             }
